@@ -3,11 +3,12 @@ export default async function handler(req, res) {
 
   try {
     const r = await fetch("https://api.brevo.com/v3/contacts/lists/4", {
-      headers: {S
+      headers: {
         "accept": "application/json",
         "api-key": process.env.BREVO_API_KEY
       }
     });
+
     if (!r.ok) throw new Error("HTTP " + r.status);
     const data = await r.json();
 
