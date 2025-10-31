@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeker Elite Counter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a1e;
+            font-family: 'Exo 2', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #00fff9;
+        }
+        .counter-container {
+            text-align: center;
+        }
+        .counter-label {
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00fff9;
+        }
+        .counter-value {
+            font-size: 72px;
+            font-weight: 800;
+            text-shadow: 0 0 20px #00fff9, 0 0 40px #a855f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div class="counter-label">Seeker Elite Spots Remaining</div>
+        <div class="counter-value" id="counter">Loading...</div>
+    </div>
+
+    <script>
+        // Fetch count from your API endpoint
+        fetch('/api/seeker-elite-remaining')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('counter').textContent = data.remaining || '???';
+            })
+            .catch(err => {
+                document.getElementById('counter').textContent = 'ERROR';
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
